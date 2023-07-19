@@ -57,7 +57,7 @@ function ProfileCard({ data, refetch, isMobile }) {
                       flexWrap: "nowrap",
                       gap: 1,
                       alignItems: "center",
-                      maxWidth: "calc(90%)",
+                      maxWidth: "calc(85%)",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                     }}

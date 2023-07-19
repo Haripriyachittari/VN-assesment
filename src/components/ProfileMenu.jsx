@@ -107,10 +107,7 @@ function ProfileMenu({ anchorEl, handleMenuClose, id, refetch }) {
           </Box>
           <Divider />
           <Box sx={{ mt: 2, mb: 2 }}>
-            <Typography>
-              Removed profile will be deleted permanently and won't be available
-              anymore.
-            </Typography>
+            <Typography>Removed profile won't be available.</Typography>
           </Box>
           <Divider />
           <Box
@@ -134,7 +131,6 @@ function ProfileMenu({ anchorEl, handleMenuClose, id, refetch }) {
               Cancel
             </Button>
             <Button
-              variant="danger"
               onClick={handleDeleteClick}
               style={{
                 width: "45%",

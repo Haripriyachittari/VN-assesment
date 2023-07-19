@@ -15,19 +15,19 @@ import {
 import SettingsIcon from "@mui/icons-material/Settings";
 import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
 import VerifiedRoundedIcon from "@mui/icons-material/VerifiedRounded";
-import ProfileActions from "./ProfileMenu";
+import ProfileMenu from "./ProfileMenu";
 
 function ProfileGrid({ data, setPage, setRows, page, rows, refetch }) {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [menu, setmenu] = useState(null);
   const [id, setId] = useState(null);
 
   const handleMenuOpen = (event, id) => {
-    setAnchorEl(event.currentTarget);
+    setmenu(event.currentTarget);
     setId(id);
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
+    setmenu(null);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -89,8 +89,8 @@ function ProfileGrid({ data, setPage, setRows, page, rows, refetch }) {
                     <MoreVertRoundedIcon />
                   </IconButton>
                 </TableCell>
-                <ProfileActions
-                  anchorEl={anchorEl}
+                <ProfileMenu
+                  menu={menu}
                   handleMenuClose={handleMenuClose}
                   id={id}
                   refetch={refetch}
