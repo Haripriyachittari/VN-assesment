@@ -17,7 +17,7 @@ import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
 import VerifiedRoundedIcon from "@mui/icons-material/VerifiedRounded";
 import ProfileActions from "./ProfileMenu";
 
-function GridView({ data, setPage, setRows, page, rows, refetch }) {
+function ProfileGrid({ data, setPage, setRows, page, rows, refetch }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [id, setId] = useState(null);
 
@@ -118,4 +118,4 @@ function GridView({ data, setPage, setRows, page, rows, refetch }) {
   );
 }
 
-export default GridView;
+export default ProfileGrid;

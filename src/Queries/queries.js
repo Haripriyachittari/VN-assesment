@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-// Define a GraphQL query to get all profiles with pagination, ordering, and searching
 const GET_ALL_PROFILES = gql`
   query GetAllProfiles(
     $orderBy: globalOrderBy

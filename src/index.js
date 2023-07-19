@@ -11,6 +11,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { createRoot } from "react-dom/client";
+import { ToastContainer } from "react-toastify";
 // Get the API URL from environment variable
 const apiUrl = process.env.REACT_APP_API_URL;
 console.log(apiUrl, "api");

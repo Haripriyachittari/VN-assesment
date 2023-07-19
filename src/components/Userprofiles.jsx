@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { SnackBarContext } from "../App";
+// import { SnackBarContext } from "../App";
 import {
   useMediaQuery,
   Container,
@@ -10,8 +10,8 @@ import {
   ToggleButton,
   Typography,
 } from "@mui/material";
-import CardView from "./ProfileCard";
-import GridView from "./ProfileGrid";
+import ProfileCard from "./ProfileCard";
+import ProfileGrid from "./ProfileGrid";
 import ViewListRoundedIcon from "@mui/icons-material/ViewListRounded";
 import ViewColumnIcon from "@mui/icons-material/ViewColumn";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
@@ -23,30 +23,24 @@ import { Link } from "react-router-dom";
 import { GET_ALL_PROFILES } from "../Queries/queries";
 
 function Profiles() {
-  // Set up state variables using the useState hook
-  const [view, setView] = useState("card"); // view: the current view of the profiles page (either "card" or "grid")
-  const [searchString, setSearchString] = useState(""); // searchString: the text in the search bar
-  const [page, setPage] = React.useState(0); // page: the current page of profiles being displayed
-  const [rows, setRows] = React.useState(16); // rows: the number of rows of profiles being displayed
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm")); // isMobile: a boolean that is true if the screen width is less than or equal to the "sm" breakpoint
-  const [key, setKey] = useState("email"); // State for selected field
-  const [sort, setSort] = useState("asc"); // State for selected order
-  const { setMessage, setSeverity, setOpenSnackBar } =
-    useContext(SnackBarContext);
+  const [view, setView] = useState("card");
+  const [searchString, setSearchString] = useState("");
+  const [page, setPage] = React.useState(0);
+  const [rows, setRows] = React.useState(20);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const [key, setKey] = useState("email");
+  const [sort, setSort] = useState("asc");
 
-  // This function is called when the view is changed
   const handleViewChange = (event, nextView) => {
     if (nextView) {
       setView(nextView); // set the view to the new view
     }
   };
 
-  // Use the useEffect hook to set the view to "card" if the screen width is less than or equal to the "sm" breakpoint
   useEffect(() => {
     isMobile && setView("card");
   }, [isMobile]);
 
-  // Use the useQuery hook from Apollo Client to fetch all profiles from the server
   const { loading, error, data, refetch } = useQuery(GET_ALL_PROFILES, {
     variables: {
       orderBy: {
@@ -60,28 +54,16 @@ function Profiles() {
   });
 
   useEffect(() => {
-    if (error) {
-      setMessage(error.message + "Please check CORS (turn it on)");
-      setSeverity("error");
-      setOpenSnackBar(true);
-    }
-  }, [error, setMessage, setSeverity, setOpenSnackBar]);
-
-  // This effect is triggered whenever the view changes,
-  // and sets the page and rows variables based on the new view
-  useEffect(() => {
     setPage(0);
-    view === "card" ? setRows(16) : setRows(5);
+    view === "card" ? setRows(20) : setRows(6);
   }, [view, key, sort]);
 
-  // const debouncedSearch = debounce((searchString) => {
   const debouncedSearch = debounce((e) => {
     setSearchString(e.target.value);
   }, 500);
 
   return (
     <Container sx={{ p: 5 }}>
-      {/* The search bar and buttons for creating a new profile and switching between views */}
       <Container
         sx={{
           display: "flex",
@@ -202,8 +184,7 @@ function Profiles() {
         {error && <p>Something Went Wrong</p>}
         {data && data.getAllProfiles.profiles.length > 0 ? (
           view === "card" ? (
-            // <CardView data={data} refetch={refetch} />
-            <CardView
+            <ProfileCard
               data={data}
               setPage={setPage}
               page={page}
@@ -212,7 +193,7 @@ function Profiles() {
               isMobile={isMobile}
             />
           ) : (
-            <GridView
+            <ProfileGrid
               data={data}
               setPage={setPage}
               setRows={setRows}

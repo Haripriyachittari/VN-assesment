@@ -11,9 +11,10 @@ import {
 import { useMutation } from "@apollo/client";
 import { DELETE_PROFILE } from "../Queries/queries";
 import { Link } from "react-router-dom";
-import { SnackBarContext } from "../App";
+// import { SnackBarContext } from "../App";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "react-bootstrap/Button";
+import { toast } from "react-toastify";
 
 const style = {
   position: "absolute",
@@ -27,27 +28,26 @@ const style = {
   p: 4,
 };
 
-// Component for profile actions (edit and delete)
-function ProfileActions({ anchorEl, handleMenuClose, id, refetch }) {
+function ProfileMenu({ anchorEl, handleMenuClose, id, refetch }) {
   const [loading, setLoading] = useState(false);
-  const { setMessage, setSeverity, setOpenSnackBar } =
-    React.useContext(SnackBarContext);
+  // const { setMessage, setSeverity, setOpenSnackBar } =
+  //   React.useContext(SnackBarContext);
   const [modalOpen, setModalOpen] = React.useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
 
   function handleOpenSnackBar(message, severity) {
-    setMessage(message);
-    setSeverity(severity);
-    setOpenSnackBar(true);
+    // setMessage(message);
+    // setSeverity(severity);
+    // setOpenSnackBar(true);
   }
 
-  // Mutation to delete profile
   const [deleteProfile] = useMutation(DELETE_PROFILE, {
     variables: { deleteProfileId: id },
     onCompleted: () => {
       setLoading(false);
       handleOpenSnackBar("Profile has been deleted", "success");
+
       handleMenuClose();
       refetch();
     },
@@ -58,7 +58,6 @@ function ProfileActions({ anchorEl, handleMenuClose, id, refetch }) {
     },
   });
 
-  // Function to handle delete click
   const handleDeleteClick = async () => {
     setLoading(true);
     await deleteProfile();
@@ -80,12 +79,10 @@ function ProfileActions({ anchorEl, handleMenuClose, id, refetch }) {
           },
         }}
       >
-        {/* Edit button */}
-        <MenuItem component={Link} to={`/talent/edit/${id}`}>
+        <MenuItem component={Link} to={`/profile/edit/${id}`}>
           Edit Profile
         </MenuItem>
 
-        {/* Delete button */}
         <MenuItem onClick={handleModalOpen} disabled={loading}>
           {loading ? "Removing..." : "Remove Profile"}
         </MenuItem>
@@ -132,14 +129,26 @@ function ProfileActions({ anchorEl, handleMenuClose, id, refetch }) {
             <Button
               variant="outline-secondary"
               onClick={handleModalClose}
-              style={{ width: "45%" }}
+              style={{
+                width: "45%",
+                padding: "8px",
+                border: "none",
+                backgroundColor: "gray",
+                color: "white",
+              }}
             >
               Cancel
             </Button>
             <Button
               variant="danger"
               onClick={handleDeleteClick}
-              style={{ width: "45%" }}
+              style={{
+                width: "45%",
+                backgroundColor: "red",
+                padding: "8px",
+                border: "none",
+                color: "white",
+              }}
             >
               Delete
             </Button>
@@ -150,4 +159,4 @@ function ProfileActions({ anchorEl, handleMenuClose, id, refetch }) {
   );
 }
 
-export default ProfileActions;
+export default ProfileMenu;
