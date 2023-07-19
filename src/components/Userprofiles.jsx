@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { SnackBarContext } from "../App";
+
 import {
   useMediaQuery,
   Container,
@@ -33,7 +33,7 @@ function Profiles() {
 
   const handleViewChange = (event, nextView) => {
     if (nextView) {
-      setView(nextView); // set the view to the new view
+      setView(nextView);
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { SnackBarContext } from "../App";
+
 import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   useMediaQuery,
@@ -36,13 +36,7 @@ function CreateEditUser({ mode }) {
 
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
-  //   const { setMessage, setSeverity, setOpenSnackBar } =
-  //     useContext(SnackBarContext);
-
   function handleOpenSnackBar(message, severity) {
-    // setMessage(message);
-    // setSeverity(severity);
-    // setOpenSnackBar(true);
     navigate("/profiles");
   }
 

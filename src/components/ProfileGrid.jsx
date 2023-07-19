@@ -21,23 +21,19 @@ function ProfileGrid({ data, setPage, setRows, page, rows, refetch }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [id, setId] = useState(null);
 
-  // Open the menu and set the ID of the selected profile
   const handleMenuOpen = (event, id) => {
     setAnchorEl(event.currentTarget);
     setId(id);
   };
 
-  // Close the menu
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
 
-  // Change the current page
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  // Change the number of rows per page and go back to the first page
   const handleChangeRowsPerPage = (event) => {
     setRows(parseInt(event.target.value));
     setPage(0);
@@ -108,7 +104,6 @@ function ProfileGrid({ data, setPage, setRows, page, rows, refetch }) {
         rowsPerPageOptions={[5, 10]}
         component="div"
         count={data.getAllProfiles.size}
-        // count={data.getAllProfiles.profiles.length}
         rowsPerPage={rows}
         page={page}
         onPageChange={handleChangePage}

@@ -11,10 +11,9 @@ import {
 import { useMutation } from "@apollo/client";
 import { DELETE_PROFILE } from "../Queries/queries";
 import { Link } from "react-router-dom";
-// import { SnackBarContext } from "../App";
+
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "react-bootstrap/Button";
-import { toast } from "react-toastify";
 
 const style = {
   position: "absolute",
@@ -30,17 +29,12 @@ const style = {
 
 function ProfileMenu({ anchorEl, handleMenuClose, id, refetch }) {
   const [loading, setLoading] = useState(false);
-  // const { setMessage, setSeverity, setOpenSnackBar } =
-  //   React.useContext(SnackBarContext);
+
   const [modalOpen, setModalOpen] = React.useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
 
-  function handleOpenSnackBar(message, severity) {
-    // setMessage(message);
-    // setSeverity(severity);
-    // setOpenSnackBar(true);
-  }
+  function handleOpenSnackBar(message, severity) {}
 
   const [deleteProfile] = useMutation(DELETE_PROFILE, {
     variables: { deleteProfileId: id },

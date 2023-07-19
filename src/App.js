@@ -15,11 +15,6 @@ import ErrorIcon from "@mui/icons-material/Error";
 import AddEditProfile from "./components/CreateEditUser";
 import { ToastContainer } from "react-toastify";
 
-// import ShowSnackBar from "./Components/ResponseSnackBar/ShowSnackBar";
-
-// export const SnackBarContext = createContext();
-
-// Define the light and dark themes
 const lightTheme = createTheme({
   palette: {
     mode: "light",
@@ -33,11 +28,7 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  // Use state to keep track of whether we're in dark mode or not
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState("");
-  const [openSnackBar, setOpenSnackBar] = useState(false);
 
   const handleToggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -47,16 +38,6 @@ function App() {
 
   return (
     <>
-      {/* <SnackBarContext.Provider
-        value={{
-          message,
-          setMessage,
-          severity,
-          setSeverity,
-          openSnackBar,
-          setOpenSnackBar,
-        }}
-      > */}
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
@@ -113,7 +94,6 @@ function App() {
           />
         </Routes>
       </ThemeProvider>
-      {/* </SnackBarContext.Provider> */}
     </>
   );
 }
