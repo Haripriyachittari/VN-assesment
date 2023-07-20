@@ -26,7 +26,7 @@ function Profiles() {
   const [view, setView] = useState("card");
   const [searchString, setsearchString] = useState("");
   const [page, setPage] = React.useState(0);
-  const [cards, setcards] = React.useState(20);
+  const [rows, setRows] = React.useState(16);
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const [key, setKey] = useState("email");
   const [sort, setSort] = useState("asc");
@@ -47,7 +47,7 @@ function Profiles() {
         key,
         sort,
       },
-      cards,
+      rows,
       page,
       searchString,
     },
@@ -55,7 +55,7 @@ function Profiles() {
 
   useEffect(() => {
     setPage(0);
-    view === "card" ? setcards(20) : setcards(6);
+    view === "card" ? setRows(16) : setRows(5);
   }, [view, key, sort]);
 
   const debouncedSearch = debounce((e) => {
@@ -196,9 +196,9 @@ function Profiles() {
             <ProfileGrid
               data={data}
               setPage={setPage}
-              setcards={setcards}
+              setRows={setRows}
               page={page}
-              cards={cards}
+              rows={rows}
               refetch={refetch}
             />
           )

@@ -15,25 +15,29 @@ import {
 import SettingsIcon from "@mui/icons-material/Settings";
 import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
 import VerifiedRoundedIcon from "@mui/icons-material/VerifiedRounded";
-import ProfileMenu from "./ProfileMenu";
+import ProfileActions from "./ProfileMenu";
 
 function ProfileGrid({ data, setPage, setRows, page, rows, refetch }) {
-  const [menu, setmenu] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [id, setId] = useState(null);
 
+  // Open the menu and set the ID of the selected profile
   const handleMenuOpen = (event, id) => {
-    setmenu(event.currentTarget);
+    setAnchorEl(event.currentTarget);
     setId(id);
   };
 
+  // Close the menu
   const handleMenuClose = () => {
-    setmenu(null);
+    setAnchorEl(null);
   };
 
+  // Change the current page
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
+  // Change the number of rows per page and go back to the first page
   const handleChangeRowsPerPage = (event) => {
     setRows(parseInt(event.target.value));
     setPage(0);
@@ -89,8 +93,8 @@ function ProfileGrid({ data, setPage, setRows, page, rows, refetch }) {
                     <MoreVertRoundedIcon />
                   </IconButton>
                 </TableCell>
-                <ProfileMenu
-                  menu={menu}
+                <ProfileActions
+                  anchorEl={anchorEl}
                   handleMenuClose={handleMenuClose}
                   id={id}
                   refetch={refetch}
@@ -104,6 +108,7 @@ function ProfileGrid({ data, setPage, setRows, page, rows, refetch }) {
         rowsPerPageOptions={[5, 10]}
         component="div"
         count={data.getAllProfiles.size}
+        // count={data.getAllProfiles.profiles.length}
         rowsPerPage={rows}
         page={page}
         onPageChange={handleChangePage}
