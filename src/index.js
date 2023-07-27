@@ -12,7 +12,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { createRoot } from "react-dom/client";
 
-const apiUrl = "https://api.poc.graphql.dev.vnplatform.com/graphqlL;
+const apiUrl = "https://api.poc.graphql.dev.vnplatform.com/graphql";
 console.log(apiUrl, "api");
 
 const httpLink = createHttpLink({
