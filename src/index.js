@@ -12,7 +12,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { createRoot } from "react-dom/client";
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = "https://api.poc.graphql.dev.vnplatform.com/graphqlL;
 console.log(apiUrl, "api");
 
 const httpLink = createHttpLink({
@@ -20,7 +20,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = process.env.REACT_APP_TOKEN;
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYW5kaWRhdGVfbmFtZSI6Imhhcmlwcml5YUBhaWRldGljLmluIiwiaXNfY2FuZGlkYXRlIjp0cnVlLCJpYXQiOjE2OTA0NDY1MjAsImV4cCI6MTY5MDk2NDkyMH0.ipmlDVfrFOGV5avGyhpiSAFBAB-x5NbwmgnCV0v6l1o";
   console.log("Token:", token);
   console.log("uri:", apiUrl);
   return {
